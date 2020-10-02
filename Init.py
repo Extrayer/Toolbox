@@ -1,4 +1,4 @@
-from urllib.request import urlopen, urlretrieve
+import urllib.request as urllib
 import progressbar
 import os
 
@@ -18,14 +18,14 @@ class ProgressBar():
             self.pbar.finish()
 
 def update_toolbox():
-    urlretrieve('https://github.com/Extrayer/Toolbox/raw/master/toolbox.exe', "C:\\Toolbox\\toolbox.exe", ProgressBar() )
+    urllib.urlretrieve('https://github.com/Extrayer/Toolbox/raw/master/toolbox.exe', "C:\\Toolbox\\toolbox.exe", ProgressBar() )
 
 def update_version():
     if os.path.exists('C:/Toolbox/version.txt'):
         os.remove('C:/Toolbox/version.txt')
     else:
         pass
-    urlretrieve('https://www.toolbox.tk/version.txt', "C:\\Toolbox\\version.txt", ProgressBar() )
+    urllib.urlretrieve('https://www.toolbox.tk/version.txt', "C:\\Toolbox\\version.txt", ProgressBar() )
 
 def start():
 
@@ -72,7 +72,7 @@ except:
     pass
 
 try: #Si fichier version.txt existe : 
-    last_version = urlopen('http://toolbox.tk/version.txt').read().decode('utf8')
+    last_version = urllib.urlopen('http://toolbox.tk/version.txt').read().decode('utf8')
     
     fichier = open("C:\\Toolbox\\version.txt", "r")
     currently_version = (fichier.read())
