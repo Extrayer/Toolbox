@@ -1,6 +1,5 @@
 from urllib.request import urlopen, urlretrieve
 import progressbar
-from os import mkdir, remove, startfile
 import os
 from tkinter import messagebox
 import tkinter as tk
@@ -38,36 +37,36 @@ def update_version():
 def start():
 
     try:
-       mkdir('C:\Toolbox\Download')
+       os.mkdir('C:\Toolbox\Download')
     except:
         pass
 
     try:
-        mkdir('C:\Toolbox\Download\App')
+        os.mkdir('C:\Toolbox\Download\App')
     except:
         pass
 
     try:
-        mkdir('C:\Toolbox\Download\Driver')
+        os.mkdir('C:\Toolbox\Download\Driver')
     except:
         pass
 
     try:
-        mkdir('C:\Toolbox\Download\Icon')
+        os.mkdir('C:\Toolbox\Download\Icon')
     except:
         pass
 
     try:
-        mkdir('C:\Toolbox\Download\Regedit')
+        os.mkdir('C:\Toolbox\Download\Regedit')
     except:
         pass
 
     try:
-        mkdir('C:\Toolbox\Download\Wallpaper')
+        os.mkdir('C:\Toolbox\Download\Wallpaper')
     except:
         pass
 
-    startfile(r'C:\Toolbox\toolbox.exe')
+    os.startfile(r'C:\Toolbox\toolbox.exe')
 
 def install():
     update_version()
@@ -75,7 +74,7 @@ def install():
     start()
 
 try:
-    mkdir('C:\Toolbox')
+    os.mkdir('C:\Toolbox')
 except:
     pass
 
@@ -89,14 +88,18 @@ try: #Si fichier version.txt existe :
     if currently_version == last_version :
         start()
     else:
-        resp = messagebox.askyesno('Toolbox',"Found new version " + str(last_version) + ", do you want to update now ?" )
-        if resp:
-            print("Mise à jour de l'application :")
-            update_version() 
-            update_toolbox()
-            start()
-        else:
-            start()
+        answer = None 
+        while answer not in ("y", "n"): 
+            answer = input("Found new version " + str(last_version) + ", do you want to update now ? (y/n) : ") 
+            if answer == "y": 
+                print("Mise à jour de l'application :")
+                update_version() 
+                update_toolbox()
+                start()
+            elif answer == "n": 
+                start()
+            else: 
+                print("Please enter yes (y) or no (n).") 
    
 except: #Si fichier version.txt n'existe pas : 
     install()
