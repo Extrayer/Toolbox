@@ -1,9 +1,6 @@
 from urllib.request import urlopen, urlretrieve
 import progressbar
 import os
-from tkinter import messagebox
-import tkinter as tk
-
 
 class ProgressBar():
     def __init__(self):
@@ -20,19 +17,15 @@ class ProgressBar():
         else:
             self.pbar.finish()
 
-root = tk.Tk()
-root.overrideredirect(1)
-root.withdraw()
-
 def update_toolbox():
     urlretrieve('https://github.com/Extrayer/Toolbox/raw/master/toolbox.exe', "C:\\Toolbox\\toolbox.exe", ProgressBar() )
 
 def update_version():
-	if os.path.exists('C:/Toolbox/version.txt'):
-   		os.remove('C:/Toolbox/version.txt')
-	else:
-		pass
-	urlretrieve('https://www.toolbox.tk/version.txt', "C:\\Toolbox\\version.txt", ProgressBar() )
+    if os.path.exists('C:/Toolbox/version.txt'):
+        os.remove('C:/Toolbox/version.txt')
+    else:
+        pass
+    urlretrieve('https://www.toolbox.tk/version.txt', "C:\\Toolbox\\version.txt", ProgressBar() )
 
 def start():
 
