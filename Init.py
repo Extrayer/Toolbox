@@ -1,5 +1,5 @@
 import urllib.request as urllib
-import progressbar
+import progressbarqscdc
 import os
 
 class ProgressBar():
